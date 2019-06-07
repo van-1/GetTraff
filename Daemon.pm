@@ -95,8 +95,7 @@ sub get_switches
 {
 	my ($dbh) = @_;
 	logit("Enter subroutine get_switches");
-	#my $sth = $dbh -> prepare("select distinct d.dev_ip,d.dev_password from servers as s RIGHT JOIN devices as d on (s.sw = d.dev_id) where s.sw<>0 and s.status<>3 and ( d.dev_type='SW' or d.dev_type='SW-VDS')"); # old query
-	my $sql = "select distinct d.dev_ip, d.dev_password from servers as s left join interfaces as i on (i.server_id = s.server_id and s.int_active = i.int_id) left join devices as d on (i.device_id = d.dev_id) where i.device_id<>0 and s.status<>3 and ( d.dev_type='SW' or d.dev_type='SW-VDS') order by d.dev_ip";
+	my $sql = "";
 	#my $sth = $dbh -> prepare($sql);
 	#$sth->execute() ;
 	my $sth = $dbh->prepare($sql); 
